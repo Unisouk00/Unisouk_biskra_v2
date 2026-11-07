@@ -16,3 +16,5 @@
 
 ## Security
 Never put a Supabase service-role key in frontend code or commit secrets. Use only the public publishable key in browser apps. Existing Supabase database objects are preserved; migrations are not automatically applied from this repository.
+
+Deployment configuration is managed through Netlify project settings.
