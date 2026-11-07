@@ -5,17 +5,16 @@ import { supabase, supabaseConfigured } from './lib/supabase'
 
 type Listing = { id: string; title: string; price_dzd: number; category_name: string; condition: string; created_at?: string }
 const categories = [
-  { name:'كتب ومراجع', icon:BookOpen, color:'bg-blue-50 text-blue-700', query:'كتب' },
-  { name:'إلكترونيات', icon:Laptop, color:'bg-violet-50 text-violet-700', query:'إلكترونيات' },
-  { name:'ملابس', icon:Shirt, color:'bg-pink-50 text-pink-700', query:'ملابس' },
-  { name:'سكن جامعي', icon:HomeIcon, color:'bg-amber-50 text-amber-700', query:'سكن' },
-  { name:'نقل ومواصلات', icon:Bike, color:'bg-emerald-50 text-emerald-700', query:'نقل' },
-  { name:'خدمات طلابية', icon:BriefcaseBusiness, color:'bg-cyan-50 text-cyan-700', query:'خدمات' },
+  { name:'الكتب والمراجع', icon:BookOpen, color:'bg-blue-50 text-blue-700', query:'كتب' },
+  { name:'الأدوات الدراسية', icon:BriefcaseBusiness, color:'bg-amber-50 text-amber-700', query:'أدوات' },
+  { name:'الإلكترونيات', icon:Laptop, color:'bg-violet-50 text-violet-700', query:'إلكترونيات' },
+  { name:'الحياة الجامعية', icon:HomeIcon, color:'bg-emerald-50 text-emerald-700', query:'جامعية' },
+  { name:'الموارد التعليمية', icon:GraduationCap, color:'bg-cyan-50 text-cyan-700', query:'تعليم' },
 ]
 const sampleListings: Listing[] = [
- {id:'sample-1',title:'كتاب الرياضيات للسنة الأولى',price_dzd:1200,category_name:'كتب ومراجع',condition:'used_excellent'},
- {id:'sample-2',title:'آلة حاسبة علمية Casio',price_dzd:3500,category_name:'إلكترونيات',condition:'used_good'},
- {id:'sample-3',title:'مراجع علوم الإعلام الآلي',price_dzd:800,category_name:'كتب ومراجع',condition:'new'},
+ {id:'sample-1',title:'كتاب الرياضيات للسنة الأولى',price_dzd:1200,category_name:'الكتب والمراجع',condition:'used_excellent'},
+ {id:'sample-2',title:'آلة حاسبة علمية Casio',price_dzd:3500,category_name:'الإلكترونيات',condition:'used_good'},
+ {id:'sample-3',title:'مراجع علوم الإعلام الآلي',price_dzd:800,category_name:'الكتب والمراجع',condition:'new'},
  {id:'sample-4',title:'مكتب دراسة صغير',price_dzd:4500,category_name:'سكن جامعي',condition:'used_good'},
 ]
 function Header({onSearch}:{onSearch:(s:string)=>void}) {
