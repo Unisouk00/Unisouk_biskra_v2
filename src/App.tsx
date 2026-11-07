@@ -13,10 +13,10 @@ const categories = [
   { name:'خدمات طلابية', icon:BriefcaseBusiness, color:'bg-cyan-50 text-cyan-700', query:'خدمات' },
 ]
 const sampleListings: Listing[] = [
- {id:'sample-1',title:'كتاب الرياضيات للسنة الأولى',price:1200,category:'كتب ومراجع',condition:'مستعمل بحالة ممتازة',location:'جامعة بسكرة'},
- {id:'sample-2',title:'آلة حاسبة علمية Casio',price:3500,category:'إلكترونيات',condition:'مستعملة',location:'الإقامة الجامعية'},
- {id:'sample-3',title:'مراجع علوم الإعلام الآلي',price:800,category:'كتب ومراجع',condition:'جديدة',location:'جامعة بسكرة'},
- {id:'sample-4',title:'مكتب دراسة صغير',price:4500,category:'سكن جامعي',condition:'مستعمل',location:'بسكرة'},
+ {id:'sample-1',title:'كتاب الرياضيات للسنة الأولى',price_dzd:1200,category_name:'كتب ومراجع',condition:'used_excellent'},
+ {id:'sample-2',title:'آلة حاسبة علمية Casio',price_dzd:3500,category_name:'إلكترونيات',condition:'used_good'},
+ {id:'sample-3',title:'مراجع علوم الإعلام الآلي',price_dzd:800,category_name:'كتب ومراجع',condition:'new'},
+ {id:'sample-4',title:'مكتب دراسة صغير',price_dzd:4500,category_name:'سكن جامعي',condition:'used_good'},
 ]
 function Header({onSearch}:{onSearch:(s:string)=>void}) {
  const [term,setTerm]=useState(''); const [menu,setMenu]=useState(false)
