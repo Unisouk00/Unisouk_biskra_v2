@@ -4,7 +4,7 @@ import { BookOpen, Search, Heart, MessageCircle, UserRound, Plus, Menu, X, Gradu
 import { supabase, supabaseConfigured } from './lib/supabase'
 
 type Listing = { id: string; title: string; price_dzd: number; category_name: string; condition: string; image_url?: string | null; created_at?: string }
-const appHref = (path:string) => import.meta.env.BASE_URL + (path.startsWith('/') ? path.slice(1) : path)
+const appHref = (path:string) => '/Unisouk_biskra_v2/' + path.replace(/^\\/+/, '')
 const categories = [
   { name:'الكتب والمراجع', icon:BookOpen, color:'bg-blue-50 text-blue-700', query:'كتب' },
   { name:'الأدوات الدراسية', icon:BriefcaseBusiness, color:'bg-amber-50 text-amber-700', query:'أدوات' },
