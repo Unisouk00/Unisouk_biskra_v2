@@ -175,7 +175,35 @@ footer {
   white-space: nowrap;
 }
 @media (min-width: 768px) {
-  .unisouk-glass-menu { display: none; }
+  .unisouk-bottom-navigation {
+    width: min(760px, calc(100% - 48px));
+    max-width: 760px;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 22px;
+  }
+  .unisouk-bottom-navigation a {
+    flex-direction: row;
+    gap: 9px;
+    padding: 11px 18px;
+    border-radius: 14px;
+  }
+  .unisouk-bottom-navigation a span { margin-top: 0; font-size: .82rem; }
+  .unisouk-bottom-navigation a svg { width: 1.2rem; height: 1.2rem; }
+  .unisouk-side-menu { display: none; }
+  .unisouk-header-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: #466260;
+    white-space: nowrap;
+    transition: all .18s ease;
+  }
+  .unisouk-header-links a:hover { background: #eff9f7; color: #075b59; }
+  .unisouk-header-links a.active { background: #e5f5f2; border-color: #cce9e4; color: #075b59; }
 }
 
 
@@ -226,4 +254,14 @@ footer {
 }
 @media (min-width: 1024px) {
   .unisouk-side-menu { display: none; }
+}
+
+@media (min-width: 1024px) {
+  header.sticky > div { gap: 1rem; padding-top: .8rem; padding-bottom: .8rem; }
+  header.sticky form > div { border: 1px solid #e1eeeb; background: #f5faf9; }
+  header.sticky form { max-width: 430px; }
+  .unisouk-bottom-navigation { bottom: 18px; }
+}
+@media (max-width: 1023px) {
+  header.sticky form { max-width: none; }
 }
