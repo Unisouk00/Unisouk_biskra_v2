@@ -24,7 +24,14 @@ function Header({onSearch}:{onSearch:(s:string)=>void}) {
    <Link to="/new" className="hidden items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white shadow-soft hover:bg-brand-800 sm:flex"><Plus size={17}/> أضف إعلاناً</Link>
    <button onClick={()=>setMenu(!menu)} className="rounded-lg p-2 lg:hidden" aria-label="القائمة">{menu?<X/>:<Menu/>}</button>
   </div>
-  {menu&&<div className="border-t p-4 lg:hidden"><div className="grid gap-3"><Link to="/favorites">المفضلة</Link><Link to="/messages">الرسائل</Link><Link to="/account">حسابي</Link>{staffRole&&<Link to="/admin" className="font-bold text-teal-700">🛡️ {staffRole==='admin'?'لوحة الإدارة':'لوحة الإشراف'}</Link>}<Link to="/new" className="font-bold text-brand-700">+ أضف إعلاناً</Link></div></div>}
+  {menu&&<div className="unisouk-glass-menu unisouk-side-menu lg:hidden" role="navigation" aria-label="القائمة الجانبية">
+   <NavLink to="/browse" onClick={()=>setMenu(false)} className={({isActive})=>isActive?"active":""}><Search aria-hidden="true"/><span>استكشاف الأقسام</span></NavLink>
+   <NavLink to="/favorites" onClick={()=>setMenu(false)} className={({isActive})=>isActive?"active":""}><Heart aria-hidden="true"/><span>المفضلة</span></NavLink>
+   <NavLink to="/messages" onClick={()=>setMenu(false)} className={({isActive})=>isActive?"active":""}><MessageCircle aria-hidden="true"/><span>الرسائل</span></NavLink>
+   <NavLink to="/account" onClick={()=>setMenu(false)} className={({isActive})=>isActive?"active":""}><UserRound aria-hidden="true"/><span>حسابي</span></NavLink>
+   {staffRole&&<NavLink to="/admin" onClick={()=>setMenu(false)} className={({isActive})=>isActive?"active":""}><ShieldCheck aria-hidden="true"/><span>{staffRole==='admin'?'لوحة الإدارة':'لوحة الإشراف'}</span></NavLink>}
+   <Link to="/new" onClick={()=>setMenu(false)} className="unisouk-side-create"><Plus aria-hidden="true"/><span>أضف إعلاناً</span></Link>
+  </div>}
  </header>
 }
 function Footer(){return <footer className="mt-16 border-t bg-white"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-4 py-8 sm:flex-row"><div><b className="text-brand-800">UniSouk</b><p className="mt-1 text-sm text-slate-500">السوق الجامعي لطلبة جامعة محمد خيضر بسكرة</p></div><p className="text-xs text-slate-400">من الطلبة، للطلبة • UniSouk V2</p></div></footer>}
