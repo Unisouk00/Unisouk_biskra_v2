@@ -9,3 +9,92 @@ body { margin: 0; min-width: 320px; min-height: 100vh; }
 button, input, select, textarea { font: inherit; }
 a { color: inherit; text-decoration: none; }
 ::selection { background: #99f6e4; color: #134e4a; }
+
+
+/* UniSouk visual refresh — presentation only; application logic is unchanged. */
+:root {
+  color-scheme: light;
+  --unisouk-ink: #173b3a;
+  --unisouk-muted: #647b7a;
+  --unisouk-line: #e2eeec;
+  --unisouk-soft: #f1f9f8;
+  --unisouk-teal: #087f79;
+  --unisouk-deep: #075b59;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  color: var(--unisouk-ink);
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(13, 148, 136, .055), transparent 34rem),
+    #f7faf9;
+}
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+a, button { transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(13, 148, 136, .25);
+  outline-offset: 2px;
+}
+header.sticky {
+  border-color: var(--unisouk-line);
+  box-shadow: 0 5px 24px rgba(12, 74, 70, .055);
+}
+header.sticky > div {
+  min-height: 76px;
+}
+header.sticky a:hover { color: var(--unisouk-teal); }
+main { animation: unisouk-enter .28s ease both; }
+@keyframes unisouk-enter {
+  from { opacity: .82; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+main h1, main h2, main h3 { letter-spacing: -.025em; }
+main article {
+  border-color: var(--unisouk-line);
+  border-radius: 1.15rem;
+  box-shadow: 0 3px 14px rgba(15, 73, 69, .045);
+}
+main article:hover {
+  border-color: #b7ded9;
+  box-shadow: 0 12px 28px rgba(15, 73, 69, .10);
+}
+main form:not([class*="inline"]) {
+  border-color: var(--unisouk-line);
+}
+main input:not([type="checkbox"]):not([type="radio"]),
+main select,
+main textarea {
+  border-color: #dce9e7;
+  border-radius: .8rem;
+  background-color: #fbfdfd;
+  transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+main input:not([type="checkbox"]):not([type="radio"]):focus,
+main select:focus,
+main textarea:focus {
+  border-color: #45aaa1;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, .09);
+  outline: none;
+}
+main button:not([aria-label]) { border-radius: .8rem; }
+main button:disabled { cursor: not-allowed; }
+main aside {
+  scrollbar-color: #b8d9d5 transparent;
+  scrollbar-width: thin;
+}
+main aside button:hover { color: var(--unisouk-deep); }
+main section > h2, main section > div > h2 { color: var(--unisouk-ink); }
+main [role="alert"], main [role="status"] { border-radius: .9rem; }
+footer {
+  border-color: var(--unisouk-line);
+  background: rgba(255,255,255,.9);
+}
+@media (max-width: 640px) {
+  header.sticky > div { min-height: 64px; gap: .55rem; padding-top: .55rem; padding-bottom: .55rem; }
+  main article { border-radius: 1rem; }
+  main { padding-bottom: env(safe-area-inset-bottom); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
