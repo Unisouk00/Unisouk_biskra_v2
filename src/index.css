@@ -177,3 +177,53 @@ footer {
 @media (min-width: 768px) {
   .unisouk-glass-menu { display: none; }
 }
+
+
+/* Side drawer: same glass palette and active state as the mobile bottom navigation. */
+.unisouk-side-menu {
+  left: auto;
+  right: 12px;
+  top: 72px;
+  bottom: auto;
+  transform: none;
+  width: min(270px, calc(100vw - 24px));
+  max-width: 270px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 24px;
+  animation: unisouk-menu-in .18s ease-out;
+}
+.unisouk-side-menu a {
+  flex: 0 0 auto;
+  min-height: 46px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 15px;
+  text-align: right;
+}
+.unisouk-side-menu a:hover { transform: translateX(-2px); }
+.unisouk-side-menu a svg { width: 1.25rem; height: 1.25rem; }
+.unisouk-side-menu a span {
+  margin-top: 0;
+  font-size: .88rem;
+  line-height: 1.35;
+}
+.unisouk-side-menu a.unisouk-side-create {
+  margin-top: 4px;
+  background: rgba(220,245,241,.96);
+  color: #075b59;
+  font-weight: 800;
+}
+@keyframes unisouk-menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (min-width: 1024px) {
+  .unisouk-side-menu { display: none; }
+}
