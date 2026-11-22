@@ -190,7 +190,6 @@ footer {
   }
   .unisouk-bottom-navigation a span { margin-top: 0; font-size: .82rem; }
   .unisouk-bottom-navigation a svg { width: 1.2rem; height: 1.2rem; }
-  .unisouk-side-menu { display: none; }
   .unisouk-header-links a {
     display: inline-flex;
     align-items: center;
@@ -252,9 +251,6 @@ footer {
   from { opacity: 0; transform: translateY(-6px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@media (min-width: 1024px) {
-  .unisouk-side-menu { display: none; }
-}
 
 @media (min-width: 1024px) {
   header.sticky > div { gap: 1rem; padding-top: .8rem; padding-bottom: .8rem; }
@@ -264,4 +260,18 @@ footer {
 }
 @media (max-width: 1023px) {
   header.sticky form { max-width: none; }
+}
+
+/* Keep the menu toggle and drawer available on desktop as well as mobile. */
+.unisouk-menu-toggle { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+@media (min-width: 768px) {
+  .unisouk-side-menu { display: flex; }
+}
+@media (min-width: 1024px) {
+  .unisouk-side-menu {
+    top: 84px;
+    right: max(24px, calc((100vw - 1280px) / 2));
+    width: 290px;
+    max-width: 290px;
+  }
 }
