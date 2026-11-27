@@ -809,3 +809,209 @@ body { background:var(--us-bg); color:#172b28; }
  .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-card h3 { font-size:11px; }
  .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-card b { font-size:13px; }
 }
+
+
+
+/* =========================================================
+   UniSouk — reference-matched Arabic marketplace UI
+   Visual-only overrides. React state, routes, handlers and Supabase
+   operations remain untouched.
+   ========================================================= */
+:root {
+  --us-ref-green: #0b4f3c;
+  --us-ref-green-dark: #0d3f34;
+  --us-ref-gold: #d99a19;
+  --us-ref-gold-soft: #fff5d9;
+  --us-ref-bg: #f7f9f8;
+  --us-ref-border: #e8eeeb;
+  --us-ref-muted: #788580;
+}
+html, body { background: var(--us-ref-bg); }
+body { color: #172923; font-family: 'Cairo', sans-serif; }
+.unisouk-header {
+  background: rgba(255,255,255,.97) !important;
+  border-color: var(--us-ref-border) !important;
+}
+.unisouk-brand > span:first-child { background: var(--us-ref-green) !important; }
+.unisouk-brand b { color: var(--us-ref-green) !important; }
+.unisouk-campus { background: #eff7f3 !important; color: var(--us-ref-green) !important; }
+.unisouk-header .unisouk-search > div { background: #f7f9f8 !important; border-color: #e6ece9 !important; }
+.unisouk-header .unisouk-search button { background: transparent !important; color: var(--us-ref-green) !important; box-shadow: none !important; padding: 7px !important; }
+.unisouk-header button[aria-label="الإشعارات"] { background: #fff !important; color: var(--us-ref-green) !important; }
+.unisouk-header-links a.active { background: #eaf4ee !important; color: var(--us-ref-green) !important; }
+
+/* Home: compact campus marketplace hero and two-column category tiles. */
+.unisouk-home-v2 { background: var(--us-ref-bg) !important; }
+.unisouk-home-v2 .unisouk-hero-v2 {
+  background: linear-gradient(115deg, rgba(6,57,46,.96), rgba(11,79,60,.88)),
+    radial-gradient(circle at 18% 25%, #3a8a6e, #0b4f3c) !important;
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 14px 34px rgba(11,79,60,.13) !important;
+}
+.unisouk-home-v2 .unisouk-hero-copy h1 span { color: #f4d58b !important; }
+.unisouk-home-v2 .unisouk-primary-action { background: #fff !important; color: var(--us-ref-green) !important; }
+.unisouk-home-v2 .unisouk-secondary-action { border-color: rgba(255,255,255,.4) !important; }
+.unisouk-home-v2 .unisouk-categories-v2 { padding-top: 30px; }
+.unisouk-home-v2 .unisouk-category-rail {
+  grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  gap: 12px !important;
+}
+.unisouk-home-v2 .unisouk-category-item {
+  min-height: 118px !important;
+  border-radius: 21px !important;
+  border-color: var(--us-ref-border) !important;
+  box-shadow: 0 5px 16px rgba(20,55,47,.045) !important;
+}
+.unisouk-home-v2 .unisouk-category-icon { background: #eaf5ef !important; color: var(--us-ref-green) !important; }
+.unisouk-home-v2 .unisouk-category-item b { color: #203a30 !important; }
+.unisouk-home-v2 .unisouk-sell-banner {
+  border-color: #dceee4 !important;
+  background: linear-gradient(110deg,#e8f5ed,#f5faf6) !important;
+}
+.unisouk-home-v2 .unisouk-sell-icon { background: var(--us-ref-green) !important; }
+.unisouk-home-v2 .unisouk-sell-banner>a { background: var(--us-ref-green) !important; }
+
+/* Browse and product cards. */
+.unisouk-product-card {
+  border: 1px solid var(--us-ref-border) !important;
+  border-radius: 22px !important;
+  background: #fff !important;
+  box-shadow: 0 5px 18px rgba(18,55,42,.05) !important;
+}
+.unisouk-product-image { background: #f0f2f4 !important; }
+.unisouk-product-card .absolute.right-3.top-3 {
+  background: var(--us-ref-gold-soft) !important;
+  color: #78500b !important;
+}
+.unisouk-product-card .absolute.bottom-3.left-3 {
+  background: #e8f5ee !important;
+  color: var(--us-ref-green) !important;
+}
+.unisouk-product-card b, .unisouk-detail p.text-3xl { color: var(--us-ref-green) !important; }
+main[ class*="max-w-7xl"] [aria-label="فئات الإعلانات"] button[aria-pressed="true"] {
+  background: var(--us-ref-green) !important;
+  border-color: var(--us-ref-green) !important;
+}
+main [aria-label="فئات الإعلانات"] button:not([aria-pressed="true"]) {
+  background: #fff !important;
+  border-color: var(--us-ref-border) !important;
+}
+
+/* Product detail gallery, seller panel and persistent contact bar. */
+.unisouk-detail { padding-bottom: 112px !important; }
+.unisouk-detail-gallery {
+  min-height: 330px !important;
+  border: 0 !important;
+  border-radius: 28px !important;
+  background: #eef0f3 !important;
+}
+.unisouk-detail-gallery img { mix-blend-mode: multiply; }
+.unisouk-detail .rounded-3xl.border { border-color: var(--us-ref-border) !important; }
+.unisouk-detail .unisouk-sticky-contact,
+.unisouk-sticky-contact {
+  border-color: var(--us-ref-border) !important;
+  background: rgba(255,255,255,.97) !important;
+  box-shadow: 0 -8px 28px rgba(20,55,47,.10) !important;
+}
+.unisouk-sticky-contact button { background: var(--us-ref-green) !important; }
+
+/* Add listing form: spacious dashed upload-style visual treatment. */
+main form.rounded-2xl, main form.rounded-3xl {
+  border-color: var(--us-ref-border) !important;
+  border-radius: 24px !important;
+  background: #fff !important;
+}
+main input:not([type="checkbox"]):not([type="radio"]),
+main select, main textarea {
+  border-color: #e2eae5 !important;
+  background: #fafcfb !important;
+  border-radius: 13px !important;
+}
+main button[class*="bg-brand-"], main a[class*="bg-brand-"] {
+  background: var(--us-ref-green) !important;
+}
+
+/* Messages, favorites, profile and account surfaces. */
+main .grid.min-h-\[620px\] {
+  border-color: var(--us-ref-border) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 26px rgba(20,55,47,.055) !important;
+}
+main .grid.min-h-\[620px\] aside > div:first-child { background: #fff; }
+main .grid.min-h-\[620px\] aside button:hover { background: #f0f7f3 !important; }
+main .grid.min-h-\[620px\] section { background: #f7faf8 !important; }
+main .grid.min-h-\[620px\] section header { background: #fff !important; }
+main .grid.min-h-\[620px\] section form button { background: var(--us-ref-green) !important; }
+main .grid > a.rounded-2xl.border.bg-white {
+  border-color: var(--us-ref-border) !important;
+  border-radius: 21px !important;
+  background: #fff !important;
+  box-shadow: 0 5px 18px rgba(20,55,47,.05);
+}
+main .grid > a.rounded-2xl.border.bg-white:hover { border-color: #c5ddd0 !important; }
+main .grid > a.rounded-2xl.border.bg-white p.font-bold { color: var(--us-ref-green) !important; }
+main section.rounded-3xl.border.bg-white { border-color: var(--us-ref-border) !important; border-radius: 24px !important; }
+
+/* Drawer: white slide-over feel, rather than a dark floating capsule. */
+.unisouk-side-menu {
+  background: rgba(255,255,255,.985) !important;
+  border: 1px solid var(--us-ref-border) !important;
+  box-shadow: 0 18px 48px rgba(17,48,38,.16) !important;
+}
+.unisouk-side-menu::after { display: none; }
+.unisouk-side-menu a { color: #263a32 !important; }
+.unisouk-side-menu a.active { background: #eaf5ee !important; color: var(--us-ref-green) !important; }
+.unisouk-side-menu a.unisouk-side-create { background: #eaf5ee !important; color: var(--us-ref-green) !important; }
+.unisouk-side-menu > div:first-child { background: #eaf5ee !important; }
+
+/* Five-item bottom navigation stays thumb-friendly on small screens. */
+.unisouk-bottom-navigation {
+  background: rgba(255,255,255,.97) !important;
+  border: 1px solid #e5ece8 !important;
+  box-shadow: 0 8px 28px rgba(19,54,42,.14) !important;
+}
+.unisouk-bottom-navigation a { color: #718079 !important; }
+.unisouk-bottom-navigation a.active {
+  background: #eaf5ee !important;
+  color: var(--us-ref-green) !important;
+}
+.unisouk-bottom-navigation a:hover { color: var(--us-ref-green) !important; }
+
+@media (max-width: 640px) {
+  .unisouk-header > div { padding: 8px 11px !important; gap: 7px !important; }
+  .unisouk-brand b { font-size: 16px !important; }
+  .unisouk-brand small { font-size: 9px !important; }
+  .unisouk-search { flex-basis: 100% !important; order: 5 !important; }
+  .unisouk-home-v2 .unisouk-hero-v2 { width: calc(100% - 18px) !important; }
+  .unisouk-home-v2 .unisouk-category-rail {
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 9px !important;
+  }
+  .unisouk-home-v2 .unisouk-category-item { min-height: 104px !important; }
+  .unisouk-home-v2 .unisouk-category-icon { width: 42px !important; height: 42px !important; }
+  .unisouk-product-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 10px !important; }
+  .unisouk-product-image { height: 142px !important; }
+  .unisouk-product-card { border-radius: 18px !important; }
+  .unisouk-product-card h3 { font-size: 12px !important; line-height: 1.55 !important; }
+  .unisouk-product-card b { font-size: 14px !important; }
+  .unisouk-detail { padding-inline: 12px !important; }
+  .unisouk-detail-gallery { min-height: 270px !important; border-radius: 23px !important; }
+  .unisouk-sticky-contact { padding: 10px 12px !important; }
+  .unisouk-bottom-navigation {
+    bottom: max(8px,env(safe-area-inset-bottom)) !important;
+    width: calc(100% - 16px) !important;
+    max-width: 520px !important;
+    border-radius: 22px !important;
+    padding: 6px !important;
+  }
+  .unisouk-bottom-navigation a { padding: 8px 2px !important; }
+  .unisouk-bottom-navigation a span { font-size: 10px !important; }
+  .unisouk-side-menu { top: 66px !important; right: 10px !important; }
+}
+@media (min-width: 641px) {
+  .unisouk-home-v2 .unisouk-category-rail { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+}
+@media (min-width: 1024px) {
+  .unisouk-home-v2 .unisouk-category-rail { grid-template-columns: repeat(6,minmax(0,1fr)) !important; }
+  .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-grid { grid-template-columns: repeat(4,minmax(0,1fr)) !important; }
+}
