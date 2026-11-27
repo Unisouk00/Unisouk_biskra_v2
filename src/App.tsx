@@ -49,7 +49,6 @@ function Header({onSearch}:{onSearch:(s:string)=>void}) {
   </div>}
  </header>
 }
-}
 function Footer(){return <footer className="mt-16 border-t bg-white"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-4 py-8 sm:flex-row"><div><b className="text-brand-800">UniSouk</b><p className="mt-1 text-sm text-slate-500">السوق الجامعي لطلبة جامعة محمد خيضر بسكرة</p></div><p className="text-xs text-slate-400">من الطلبة، للطلبة • UniSouk V2</p></div></footer>}
 function useListings(search:string, category:string) {
  const [listings,setListings]=useState<Listing[]>([])
