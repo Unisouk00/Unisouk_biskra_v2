@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, Route, Routes, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { BookOpen, Search, Heart, MessageCircle, UserRound, Plus, Menu, X, GraduationCap, Laptop, Shirt, Home as HomeIcon, Bike, BriefcaseBusiness, Sparkles, ArrowLeft, ShieldCheck, LogOut, MapPin, Bell, SlidersHorizontal, BadgeCheck, ShoppingBag } from 'lucide-react'
 import { supabase, supabaseConfigured } from './lib/supabase'
 
@@ -145,8 +145,133 @@ function Browse({search}:{search:string}) {
  function selectCategory(name:string){setParams(name?{category:name}:{},{replace:true})}
  return <main className="mx-auto max-w-7xl px-4 py-8 sm:py-12"><h1 className="text-2xl font-extrabold sm:text-3xl">تصفح الإعلانات</h1><p className="mt-2 text-sm text-slate-500">{category?('الفئة: '+category):'ابحث في إعلانات المجتمع الجامعي.'}</p><div aria-label="فئات الإعلانات" className="mt-5 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:thin]"><button type="button" onClick={()=>selectCategory('')} aria-pressed={!category} className={'shrink-0 snap-start rounded-full border px-4 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 '+(!category?'border-brand-700 bg-brand-700 text-white shadow-sm':'border-slate-200 bg-white text-slate-700 hover:border-brand-300 hover:bg-teal-50')}>كل الفئات</button>{categories.map(c=><button type="button" key={c.name} onClick={()=>selectCategory(c.name)} aria-pressed={category===c.name} className={'shrink-0 snap-start rounded-full border px-4 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 '+(category===c.name?'border-brand-700 bg-brand-700 text-white shadow-sm':'border-slate-200 bg-white text-slate-700 hover:border-brand-300 hover:bg-teal-50')}>{c.name}</button>)}</div>{loading&&<p className="mt-6 text-sm text-slate-500">جارٍ تحميل الإعلانات…</p>}{error&&<p role="alert" className="mt-6 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">{error}</p>}<div className="mt-5"><ListingCards listings={listings}/></div></main>
 }
-function AuthPage(){const [email,setEmail]=useState('');const [password,setPassword]=useState('');const [msg,setMsg]=useState('');const [busy,setBusy]=useState(false);const [googleBusy,setGoogleBusy]=useState(false);const nav=useNavigate();async function googleLogin(){if(!supabase){setMsg('خدمة تسجيل الدخول غير مهيأة.');return}setGoogleBusy(true);setMsg('');const next=new URLSearchParams(window.location.search).get('next')||'/account';const redirectPath=import.meta.env.BASE_URL+(next.startsWith('/')?next.slice(1):next);const redirectTo=new URL(redirectPath,window.location.origin).toString();const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo}});if(error){setGoogleBusy(false);setMsg('تعذر بدء تسجيل الدخول عبر Google. تأكد من إعداد روابط إعادة التوجيه في Supabase.')}}async function submit(e:React.FormEvent){e.preventDefault();if(!supabase){setMsg('أضف إعدادات Supabase في ملف البيئة أولاً.');return}setBusy(true);const {error}=await supabase.auth.signInWithPassword({email,password});setBusy(false);if(error)setMsg(error.message);else nav(new URLSearchParams(window.location.search).get('next')||'/account')}return <div className="mx-auto max-w-md px-4 py-16"><div className="rounded-3xl border bg-white p-8 shadow-soft"><div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-teal-50 text-brand-700"><UserRound/></div><h1 className="mt-4 text-center text-2xl font-extrabold">تسجيل الدخول</h1><p className="mt-2 text-center text-sm text-slate-500">مرحبا بعودتك إلى UniSouk</p><button type="button" onClick={()=>void googleLogin()} disabled={googleBusy} className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white p-3 font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-60"><svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.48 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.91c-.58 2.96-2.26 5.48-4.77 7.18l7.73 6C44.38 37.91 47 31.75 47 24.55z"/><path fill="#FBBC05" d="M10.54 28.59A14.5 14.5 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.8l-7.73-6c-2.14 1.44-4.88 2.3-8.17 2.3-6.26 0-11.57-3.98-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>{googleBusy?'جارٍ الانتقال إلى Google…':'المتابعة باستخدام Google'}</button><div className="my-5 flex items-center gap-3 text-xs text-slate-400"><span className="h-px flex-1 bg-slate-200"/><span>أو بالبريد الإلكتروني</span><span className="h-px flex-1 bg-slate-200"/></div><form onSubmit={submit} className="grid gap-4"><label className="text-sm font-semibold">البريد الإلكتروني<input type="email" required value={email} onChange={e=>setEmail(e.target.value)} className="mt-1 w-full rounded-xl border p-3 font-normal" dir="ltr"/></label><label className="text-sm font-semibold">كلمة المرور<input type="password" required value={password} onChange={e=>setPassword(e.target.value)} className="mt-1 w-full rounded-xl border p-3 font-normal" dir="ltr"/></label><button disabled={busy} className="rounded-xl bg-brand-700 p-3 font-bold text-white disabled:opacity-60">{busy?'جارٍ الدخول…':'دخول'}</button>{msg&&<p role="alert" className="text-sm text-rose-600">{msg}</p>}</form><p className="mt-4 text-center text-xs text-slate-500">لا تملك حساباً؟ <Link to="/register" className="font-bold text-brand-700">إنشاء حساب</Link></p></div></div>}
-function Register(){const [email,setEmail]=useState('');const [password,setPassword]=useState('');const [name,setName]=useState('');const [msg,setMsg]=useState('');async function submit(e:React.FormEvent){e.preventDefault();if(!supabase){setMsg('Supabase غير مهيأ بعد.');return}const {error}=await supabase.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:new URL(import.meta.env.BASE_URL+'account',window.location.origin).toString()}});setMsg(error?error.message:'تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيد التسجيل.')}return <div className="mx-auto max-w-md px-4 py-16"><div className="rounded-3xl border bg-white p-8"><h1 className="text-2xl font-extrabold">إنشاء حساب طالب</h1><form onSubmit={submit} className="mt-6 grid gap-4"><label className="text-sm">الاسم الكامل<input required value={name} onChange={e=>setName(e.target.value)} className="mt-1 w-full rounded-xl border p-3"/></label><label className="text-sm">البريد الإلكتروني<input required type="email" value={email} onChange={e=>setEmail(e.target.value)} className="mt-1 w-full rounded-xl border p-3" dir="ltr"/></label><label className="text-sm">كلمة المرور (8 أحرف على الأقل)<input required minLength={8} type="password" value={password} onChange={e=>setPassword(e.target.value)} className="mt-1 w-full rounded-xl border p-3" dir="ltr"/></label><button className="rounded-xl bg-brand-700 p-3 font-bold text-white">إنشاء حساب</button>{msg&&<p className="text-sm text-brand-700">{msg}</p>}</form></div></div>}
+function WelcomePage(){
+ return <main className="unisouk-entry-page">
+  <section className="unisouk-welcome-panel">
+   <div className="unisouk-welcome-orbit unisouk-welcome-orbit-one"/>
+   <div className="unisouk-welcome-orbit unisouk-welcome-orbit-two"/>
+   <div className="unisouk-welcome-mark"><GraduationCap size={54}/></div>
+   <h1>UniSouk</h1>
+   <p className="unisouk-welcome-subtitle">السوق الجامعي في بسكرة</p>
+   <div className="unisouk-welcome-campus"><MapPin size={15}/> جامعة محمد خيضر - بسكرة</div>
+   <div className="unisouk-welcome-campus-art"><BookOpen size={54}/><span>سوق • بيع • تواصل</span></div>
+   <div className="unisouk-welcome-dots"><i/><i/><i/></div>
+   <small>من الطلبة، للطلبة</small>
+  </section>
+  <section className="unisouk-entry-content">
+   <div className="unisouk-entry-logo"><span><GraduationCap size={27}/></span><b>UniSouk</b></div>
+   <p className="unisouk-entry-eyebrow">مرحباً بك في السوق الجامعي</p>
+   <h2>كل احتياجاتك الجامعية<br/><span>في مكان واحد</span></h2>
+   <p className="unisouk-entry-description">اكتشف إعلانات الطلبة، اعثر على ما تحتاجه، أو اعرض أغراضك ليستفيد منها طالب آخر.</p>
+   <div className="unisouk-entry-actions">
+    <Link to="/login" className="unisouk-entry-primary">تسجيل الدخول</Link>
+    <Link to="/register" className="unisouk-entry-secondary">إنشاء حساب جديد</Link>
+    <Link to="/" className="unisouk-entry-guest">تصفح السوق دون تسجيل الدخول <ArrowLeft size={16}/></Link>
+   </div>
+   <div className="unisouk-entry-campus-note"><MapPin size={15}/> مجتمع جامعة محمد خيضر - بسكرة</div>
+  </section>
+ </main>
+}
+function AuthPage(){
+ const [email,setEmail]=useState('');
+ const [password,setPassword]=useState('');
+ const [msg,setMsg]=useState('');
+ const [busy,setBusy]=useState(false);
+ const [googleBusy,setGoogleBusy]=useState(false);
+ const nav=useNavigate();
+ async function googleLogin(){
+  if(!supabase){setMsg('خدمة تسجيل الدخول غير مهيأة.');return}
+  setGoogleBusy(true);setMsg('');
+  const next=new URLSearchParams(window.location.search).get('next')||'/account';
+  const redirectPath=import.meta.env.BASE_URL+(next.startsWith('/')?next.slice(1):next);
+  const redirectTo=new URL(redirectPath,window.location.origin).toString();
+  const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo}});
+  if(error){setGoogleBusy(false);setMsg('تعذر بدء تسجيل الدخول عبر Google. تأكد من إعداد روابط إعادة التوجيه في Supabase.')}
+ }
+ async function submit(e:React.FormEvent){
+  e.preventDefault();
+  if(!supabase){setMsg('أضف إعدادات Supabase في ملف البيئة أولاً.');return}
+  setBusy(true);
+  const {error}=await supabase.auth.signInWithPassword({email,password});
+  setBusy(false);
+  if(error)setMsg(error.message);
+  else nav(new URLSearchParams(window.location.search).get('next')||'/account')
+ }
+ return <main className="unisouk-auth-page">
+  <Link to="/welcome" className="unisouk-auth-back"><ArrowLeft size={17}/> العودة</Link>
+  <section className="unisouk-auth-card">
+   <div className="unisouk-auth-art">
+    <div className="unisouk-auth-art-orbit"/>
+    <div className="unisouk-auth-art-icon"><GraduationCap size={48}/></div>
+    <b>UniSouk</b>
+    <span>السوق الجامعي لطلبة بسكرة</span>
+    <div className="unisouk-auth-art-book"><BookOpen size={58}/></div>
+    <small>تسوّق • بيع • تواصل</small>
+   </div>
+   <div className="unisouk-auth-form-panel">
+    <div className="unisouk-entry-logo"><span><GraduationCap size={25}/></span><b>UniSouk</b></div>
+    <span className="unisouk-entry-eyebrow">أهلاً بعودتك</span>
+    <h1>تسجيل الدخول</h1>
+    <p className="unisouk-auth-intro">سجّل الدخول لمتابعة إعلاناتك ومحادثاتك الجامعية.</p>
+    <button type="button" onClick={()=>void googleLogin()} disabled={googleBusy} className="unisouk-google-button">
+     <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.48 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.91c-.58 2.96-2.26 5.48-4.77 7.18l7.73 6C44.38 37.91 47 31.75 47 24.55z"/><path fill="#FBBC05" d="M10.54 28.59A14.5 14.5 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.8l-7.73-6c-2.14 1.44-4.88 2.3-8.17 2.3-6.26 0-11.57-3.98-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+     {googleBusy?'جارٍ الانتقال إلى Google…':'المتابعة باستخدام Google'}
+    </button>
+    <div className="unisouk-auth-divider"><span/>أو بالبريد الإلكتروني<span/></div>
+    <form onSubmit={submit} className="unisouk-auth-fields">
+     <label>البريد الإلكتروني<input type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="name@example.com" dir="ltr"/></label>
+     <label>كلمة المرور<input type="password" required value={password} onChange={e=>setPassword(e.target.value)} placeholder="أدخل كلمة المرور" dir="ltr"/></label>
+     <button disabled={busy} className="unisouk-auth-submit">{busy?'جارٍ الدخول…':'تسجيل الدخول'}</button>
+     {msg&&<p role="alert" className="unisouk-auth-message">{msg}</p>}
+    </form>
+    <p className="unisouk-auth-switch">ليس لديك حساب؟ <Link to="/register">إنشاء حساب جديد</Link></p>
+    <Link to="/" className="unisouk-auth-guest">متابعة التصفح دون تسجيل <ArrowLeft size={15}/></Link>
+   </div>
+  </section>
+ </main>
+}
+function Register(){
+ const [email,setEmail]=useState('');
+ const [password,setPassword]=useState('');
+ const [name,setName]=useState('');
+ const [msg,setMsg]=useState('');
+ const [busy,setBusy]=useState(false);
+ async function submit(e:React.FormEvent){
+  e.preventDefault();
+  if(!supabase){setMsg('Supabase غير مهيأ بعد.');return}
+  setBusy(true);
+  const {error}=await supabase.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:new URL(import.meta.env.BASE_URL+'account',window.location.origin).toString()}});
+  setBusy(false);
+  setMsg(error?error.message:'تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيد التسجيل.')
+ }
+ return <main className="unisouk-auth-page">
+  <Link to="/welcome" className="unisouk-auth-back"><ArrowLeft size={17}/> العودة</Link>
+  <section className="unisouk-auth-card">
+   <div className="unisouk-auth-art">
+    <div className="unisouk-auth-art-orbit"/>
+    <div className="unisouk-auth-art-icon"><GraduationCap size={48}/></div>
+    <b>ابدأ رحلتك</b><span>انضم إلى مجتمع UniSouk</span>
+    <div className="unisouk-auth-art-book"><BookOpen size={58}/></div>
+    <small>كلية • جامعة • مجتمع</small>
+   </div>
+   <div className="unisouk-auth-form-panel">
+    <div className="unisouk-entry-logo"><span><GraduationCap size={25}/></span><b>UniSouk</b></div>
+    <span className="unisouk-entry-eyebrow">حسابك الجامعي يبدأ من هنا</span>
+    <h1>إنشاء حساب طالب</h1>
+    <p className="unisouk-auth-intro">أنشئ حسابك لتتمكن من نشر الإعلانات والتواصل مع الطلبة.</p>
+    <form onSubmit={submit} className="unisouk-auth-fields">
+     <label>الاسم الكامل<input required maxLength={80} value={name} onChange={e=>setName(e.target.value)} placeholder="أدخل اسمك الكامل"/></label>
+     <label>البريد الإلكتروني<input required type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="name@example.com" dir="ltr"/></label>
+     <label>كلمة المرور <small>(8 أحرف على الأقل)</small><input required minLength={8} type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="أنشئ كلمة مرور قوية" dir="ltr"/></label>
+     <button disabled={busy} className="unisouk-auth-submit">{busy?'جارٍ إنشاء الحساب…':'إنشاء حساب'}</button>
+     {msg&&<p role="status" className="unisouk-auth-message">{msg}</p>}
+    </form>
+    <p className="unisouk-auth-switch">لديك حساب بالفعل؟ <Link to="/login">تسجيل الدخول</Link></p>
+    <Link to="/" className="unisouk-auth-guest">العودة إلى السوق <ArrowLeft size={15}/></Link>
+   </div>
+  </section>
+ </main>
+}
 async function compressListingImage(file:File):Promise<File>{
  let source:CanvasImageSource|null=null;
  let width=0;
@@ -414,13 +539,38 @@ function AdminPage(){
 }
 function Placeholder({title,desc}:{title:string;desc:string}){return <div className="mx-auto max-w-3xl px-4 py-16"><h1 className="text-3xl font-extrabold">{title}</h1><p className="mt-3 text-slate-500">{desc}</p><Link to="/" className="mt-6 inline-block text-brand-700">← العودة للرئيسية</Link></div>}
 export default function App(){
- const [search,setSearch]=useState(''); const [notice,setNotice]=useState(false)
- useEffect(()=>{if(!supabaseConfigured)setNotice(true)},[])
- return <div className="min-h-screen pb-24"><Header onSearch={setSearch}/>{notice&&<div className="bg-amber-50 px-4 py-2 text-center text-xs text-amber-800">تنبيه إعداد: أضف متغيرات Supabase إلى Netlify أو ملف .env لتفعيل البيانات والحسابات.</div>}<Routes><Route path="/" element={<Home search={search}/>}/><Route path="/browse" element={<Browse search={search}/>}/><Route path="/login" element={<AuthPage/>}/><Route path="/register" element={<Register/>}/><Route path="/new" element={<NewListing/>}/><Route path="/account" element={<Account/>}/><Route path="/profile/:id" element={<PublicProfile/>}/><Route path="/admin" element={<AdminPage/>}/><Route path="/favorites" element={<FavoritesPage/>}/><Route path="/messages" element={<MessagesPage/>}/><Route path="/listing/:id" element={<ListingDetail/>}/><Route path="*" element={<Placeholder title="الصفحة غير موجودة" desc="لم نتمكن من العثور على الصفحة المطلوبة."/>}/></Routes><nav aria-label="التنقل الرئيسي" className="unisouk-glass-menu unisouk-bottom-navigation">
-  <NavLink to="/" end className={({isActive})=>isActive?"active":""}><HomeIcon aria-hidden="true"/><span>الرئيسية</span></NavLink>
-  <NavLink to="/browse" className={({isActive})=>isActive?"active":""}><Menu aria-hidden="true"/><span>الأقسام</span></NavLink>
-  <NavLink to="/favorites" className={({isActive})=>isActive?"active":""}><Heart aria-hidden="true"/><span>المفضلة</span></NavLink>
-  <NavLink to="/messages" className={({isActive})=>isActive?"active":""}><MessageCircle aria-hidden="true"/><span>الرسائل</span></NavLink>
-  <NavLink to="/account" className={({isActive})=>isActive?"active":""}><UserRound aria-hidden="true"/><span>حسابي</span></NavLink>
- </nav><Footer/></div>
+ const [search,setSearch]=useState('');
+ const [notice,setNotice]=useState(false);
+ const location=useLocation();
+ const standalone=['/welcome','/login','/register'].includes(location.pathname);
+ useEffect(()=>{if(!supabaseConfigured)setNotice(true)},[]);
+ return <div className="min-h-screen pb-24">
+  {!standalone&&<Header onSearch={setSearch}/>}
+  {notice&&!standalone&&<div className="bg-amber-50 px-4 py-2 text-center text-xs text-amber-800">تنبيه إعداد: أضف متغيرات Supabase إلى إعدادات النشر أو ملف .env لتفعيل البيانات والحسابات.</div>}
+  <Routes>
+   <Route path="/" element={<Home search={search}/>}/>
+   <Route path="/welcome" element={<WelcomePage/>}/>
+   <Route path="/browse" element={<Browse search={search}/>}/>
+   <Route path="/login" element={<AuthPage/>}/>
+   <Route path="/register" element={<Register/>}/>
+   <Route path="/new" element={<NewListing/>}/>
+   <Route path="/account" element={<Account/>}/>
+   <Route path="/profile/:id" element={<PublicProfile/>}/>
+   <Route path="/admin" element={<AdminPage/>}/>
+   <Route path="/favorites" element={<FavoritesPage/>}/>
+   <Route path="/messages" element={<MessagesPage/>}/>
+   <Route path="/listing/:id" element={<ListingDetail/>}/>
+   <Route path="*" element={<Placeholder title="الصفحة غير موجودة" desc="لم نتمكن من العثور على الصفحة المطلوبة."/>}/>
+  </Routes>
+  {!standalone&&<>
+   <nav aria-label="التنقل الرئيسي" className="unisouk-glass-menu unisouk-bottom-navigation">
+    <NavLink to="/" end className={({isActive})=>isActive?"active":""}><HomeIcon aria-hidden="true"/><span>الرئيسية</span></NavLink>
+    <NavLink to="/browse" className={({isActive})=>isActive?"active":""}><Menu aria-hidden="true"/><span>الأقسام</span></NavLink>
+    <NavLink to="/favorites" className={({isActive})=>isActive?"active":""}><Heart aria-hidden="true"/><span>المفضلة</span></NavLink>
+    <NavLink to="/messages" className={({isActive})=>isActive?"active":""}><MessageCircle aria-hidden="true"/><span>الرسائل</span></NavLink>
+    <NavLink to="/account" className={({isActive})=>isActive?"active":""}><UserRound aria-hidden="true"/><span>حسابي</span></NavLink>
+   </nav>
+   <Footer/>
+  </>}
+ </div>
 }
