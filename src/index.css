@@ -692,3 +692,120 @@ body { background:var(--us-bg); color:#172b28; }
 @media (min-width:768px) {
  .unisouk-hero { border-radius:0 0 36px 36px; }
 }
+
+
+/* Homepage composition v2: editorial marketplace layout, scoped to the home page. */
+.unisouk-home-v2 { padding: 18px 0 52px; overflow: hidden; }
+.unisouk-home-v2 .unisouk-hero-v2 {
+  position: relative; isolation: isolate; overflow: hidden;
+  width: min(1240px, calc(100% - 36px)); min-height: 390px; margin: 8px auto 0;
+  display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 30px;
+  padding: clamp(28px,5vw,66px); border-radius: 32px;
+  color: #fff; background: linear-gradient(115deg,#083f37 0%,#0d594a 56%,#16735c 100%);
+  box-shadow: 0 18px 48px rgba(13,74,62,.15);
+}
+.unisouk-home-v2 .unisouk-hero-v2::before,.unisouk-home-v2 .unisouk-hero-v2::after {
+  content:""; position:absolute; z-index:-1; border:1px solid rgba(255,255,255,.09); border-radius:50%;
+}
+.unisouk-home-v2 .unisouk-hero-v2::before { width:440px;height:440px;left:-170px;top:-220px;box-shadow:0 0 0 42px rgba(255,255,255,.025),0 0 0 84px rgba(255,255,255,.02); }
+.unisouk-home-v2 .unisouk-hero-v2::after { width:340px;height:340px;right:28%;bottom:-250px;box-shadow:0 0 0 35px rgba(255,255,255,.025); }
+.unisouk-home-v2 .unisouk-hero-copy { position:relative;z-index:1;max-width:590px; }
+.unisouk-home-v2 .unisouk-hero-kicker { display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.09);font-size:11px;font-weight:800;color:#d5eee5; }
+.unisouk-home-v2 .unisouk-hero-copy h1 { margin:20px 0 12px;font-size:clamp(2rem,4.2vw,3.45rem);font-weight:950;line-height:1.35;letter-spacing:-.045em; }
+.unisouk-home-v2 .unisouk-hero-copy h1 span { color:#a9e4c9; }
+.unisouk-home-v2 .unisouk-hero-copy>p { max-width:520px;color:#d5e8e1;font-size:14px;line-height:2.1; }
+.unisouk-home-v2 .unisouk-hero-actions { display:flex;flex-wrap:wrap;gap:10px;margin-top:24px; }
+.unisouk-home-v2 .unisouk-primary-action,.unisouk-home-v2 .unisouk-secondary-action { min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 18px;border-radius:14px;font-size:13px;font-weight:900; }
+.unisouk-home-v2 .unisouk-primary-action { color:#0d4a3e;background:#fff;box-shadow:0 7px 18px rgba(0,0,0,.1); }
+.unisouk-home-v2 .unisouk-secondary-action { color:#fff;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08); }
+.unisouk-home-v2 .unisouk-hero-trust { display:flex;flex-wrap:wrap;gap:20px;margin-top:22px;color:#d3e9e0;font-size:11px;font-weight:700; }
+.unisouk-home-v2 .unisouk-hero-trust span { display:inline-flex;align-items:center;gap:6px; }
+.unisouk-home-v2 .unisouk-hero-art { position:relative;min-height:290px;display:grid;place-items:center; }
+.unisouk-home-v2 .unisouk-art-ring { position:absolute;width:270px;height:270px;border:1px solid rgba(255,255,255,.22);border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 58px rgba(255,255,255,.025); }
+.unisouk-home-v2 .unisouk-art-card { position:relative;width:min(290px,80%);min-height:245px;padding:20px;border:1px solid rgba(255,255,255,.6);border-radius:25px;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(235,247,241,.95));color:#164a3d;box-shadow:0 22px 50px rgba(0,0,0,.2);transform:rotate(-4deg); }
+.unisouk-home-v2 .unisouk-art-card-top { display:flex;align-items:center;gap:8px;font-size:12px;font-weight:950; }
+.unisouk-home-v2 .unisouk-art-logo { display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:#0d4a3e;color:white; }
+.unisouk-home-v2 .unisouk-art-live { margin-right:auto;padding:4px 9px;border-radius:99px;background:#dff2e8;color:#17644f;font-size:10px; }
+.unisouk-home-v2 .unisouk-art-illustration { position:relative;display:grid;place-items:center;height:105px;margin:10px 0 8px;border-radius:18px;background:linear-gradient(135deg,#e3f1e9,#c8e5d7);color:#0d5948; }
+.unisouk-home-v2 .unisouk-art-spark { position:absolute;right:28%;top:13px;color:#c58b38;font-size:26px; }
+.unisouk-home-v2 .unisouk-art-card>b,.unisouk-home-v2 .unisouk-art-card>small { display:block;text-align:center; }
+.unisouk-home-v2 .unisouk-art-card>b { font-size:19px;font-weight:950; }
+.unisouk-home-v2 .unisouk-art-card>small { margin-top:3px;color:#6a8980;font-size:11px; }
+.unisouk-home-v2 .unisouk-art-tags { display:flex;justify-content:center;gap:7px;margin-top:13px; }
+.unisouk-home-v2 .unisouk-art-tags span { padding:5px 11px;border-radius:99px;background:#fff;color:#477366;font-size:10px;font-weight:800; }
+.unisouk-home-v2 .unisouk-art-float { position:absolute;display:flex;align-items:center;gap:7px;padding:11px 13px;border:1px solid rgba(255,255,255,.55);border-radius:14px;background:rgba(255,255,255,.95);color:#165342;box-shadow:0 10px 28px rgba(0,0,0,.12);font-size:11px;font-weight:900; }
+.unisouk-home-v2 .unisouk-art-float-one { top:28px;right:2px; }
+.unisouk-home-v2 .unisouk-art-float-two { bottom:28px;left:0; }
+.unisouk-home-v2 .unisouk-categories-v2,.unisouk-home-v2 .unisouk-latest-v2 { width:min(1240px,calc(100% - 36px));margin:0 auto;padding:46px 0 18px; }
+.unisouk-home-v2 .unisouk-section-heading { display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px; }
+.unisouk-home-v2 .unisouk-section-heading>div>span { color:#16816c;font-size:11px;font-weight:900; }
+.unisouk-home-v2 .unisouk-section-heading h2 { margin:4px 0 0;color:#172b28;font-size:clamp(20px,2.3vw,27px);font-weight:950; }
+.unisouk-home-v2 .unisouk-section-heading p { margin-top:5px;color:#778580;font-size:12px; }
+.unisouk-home-v2 .unisouk-section-heading>a { display:inline-flex;align-items:center;gap:6px;flex-shrink:0;color:#0d4a3e;font-size:12px;font-weight:900; }
+.unisouk-home-v2 .unisouk-category-rail { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px; }
+.unisouk-home-v2 .unisouk-category-item { display:flex;min-height:124px;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:16px 10px;border:1px solid #e9efec;border-radius:21px;background:#fff;box-shadow:0 5px 18px rgba(20,55,47,.035);text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s; }
+.unisouk-home-v2 .unisouk-category-item:hover { transform:translateY(-4px);border-color:#c5dfd3;box-shadow:0 12px 28px rgba(20,55,47,.08); }
+.unisouk-home-v2 .unisouk-category-icon { display:grid;width:48px;height:48px;place-items:center;border-radius:16px; }
+.unisouk-home-v2 .unisouk-category-item>b { color:#34443e;font-size:12px;font-weight:900; }
+.unisouk-home-v2 .unisouk-sell-banner { width:min(1240px,calc(100% - 36px));margin:28px auto 8px;padding:23px 27px;display:flex;align-items:center;gap:18px;border:1px solid #dcece4;border-radius:24px;background:linear-gradient(105deg,#eaf5ef,#f8fbf8); }
+.unisouk-home-v2 .unisouk-sell-icon { display:grid;flex:0 0 52px;width:52px;height:52px;place-items:center;border-radius:17px;background:#0d4a3e;color:white; }
+.unisouk-home-v2 .unisouk-sell-banner>div:nth-child(2) { flex:1; }
+.unisouk-home-v2 .unisouk-sell-banner>div:nth-child(2)>span { color:#268067;font-size:10px;font-weight:900; }
+.unisouk-home-v2 .unisouk-sell-banner h2 { margin:2px 0;color:#173b31;font-size:19px;font-weight:950; }
+.unisouk-home-v2 .unisouk-sell-banner p { color:#6e8078;font-size:11px; }
+.unisouk-home-v2 .unisouk-sell-banner>a { display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:13px;background:#0d4a3e;color:#fff;font-size:12px;font-weight:900;white-space:nowrap; }
+.unisouk-home-v2 .unisouk-latest-v2 { padding-top:44px; }
+.unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px; }
+.unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-card { border:1px solid #e9efec;border-radius:22px;box-shadow:0 5px 18px rgba(20,55,47,.04); }
+.unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-image { height:205px;background:#f1f3f6; }
+@media(max-width:900px) {
+ .unisouk-home-v2 .unisouk-hero-v2 { grid-template-columns:1fr .78fr;gap:14px;padding:34px; }
+ .unisouk-home-v2 .unisouk-art-card { width:250px; }
+ .unisouk-home-v2 .unisouk-category-rail { grid-template-columns:repeat(5,minmax(120px,1fr));overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x mandatory; }
+ .unisouk-home-v2 .unisouk-category-item { scroll-snap-align:start; }
+ .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:640px) {
+ .unisouk-home-v2 { padding-top:8px;padding-bottom:36px; }
+ .unisouk-home-v2 .unisouk-hero-v2 { width:calc(100% - 20px);min-height:0;grid-template-columns:1fr;gap:8px;padding:25px 22px 20px;border-radius:25px; }
+ .unisouk-home-v2 .unisouk-hero-copy h1 { margin-top:15px;font-size:clamp(27px,7vw,36px); }
+ .unisouk-home-v2 .unisouk-hero-copy>p { font-size:12px;line-height:1.9; }
+ .unisouk-home-v2 .unisouk-hero-actions { margin-top:17px; }
+ .unisouk-home-v2 .unisouk-primary-action,.unisouk-home-v2 .unisouk-secondary-action { min-height:42px;padding:0 13px;font-size:11px; }
+ .unisouk-home-v2 .unisouk-hero-trust { margin-top:14px;gap:13px;font-size:10px; }
+ .unisouk-home-v2 .unisouk-hero-art { min-height:205px;margin-top:4px; }
+ .unisouk-home-v2 .unisouk-art-ring { width:175px;height:175px;box-shadow:0 0 0 18px rgba(255,255,255,.035),0 0 0 36px rgba(255,255,255,.025); }
+ .unisouk-home-v2 .unisouk-art-card { width:205px;min-height:175px;padding:12px 14px;border-radius:19px; }
+ .unisouk-home-v2 .unisouk-art-card-top { font-size:10px; }
+ .unisouk-home-v2 .unisouk-art-logo { width:26px;height:26px; }
+ .unisouk-home-v2 .unisouk-art-illustration { height:67px;margin:7px 0 5px; }
+ .unisouk-home-v2 .unisouk-art-illustration svg { width:39px;height:39px; }
+ .unisouk-home-v2 .unisouk-art-card>b { font-size:14px; }
+ .unisouk-home-v2 .unisouk-art-card>small { font-size:9px; }
+ .unisouk-home-v2 .unisouk-art-tags { margin-top:7px; }
+ .unisouk-home-v2 .unisouk-art-tags span { padding:3px 8px;font-size:8px; }
+ .unisouk-home-v2 .unisouk-art-float { padding:8px 10px;font-size:9px; }
+ .unisouk-home-v2 .unisouk-art-float-one { top:13px;right:0; }
+ .unisouk-home-v2 .unisouk-art-float-two { bottom:10px;left:0; }
+ .unisouk-home-v2 .unisouk-categories-v2,.unisouk-home-v2 .unisouk-latest-v2 { width:calc(100% - 28px);padding-top:30px; }
+ .unisouk-home-v2 .unisouk-section-heading { margin-bottom:14px; }
+ .unisouk-home-v2 .unisouk-section-heading h2 { font-size:19px; }
+ .unisouk-home-v2 .unisouk-section-heading p { font-size:10px; }
+ .unisouk-home-v2 .unisouk-section-heading>a { font-size:10px; }
+ .unisouk-home-v2 .unisouk-category-rail { grid-template-columns:repeat(5,112px);gap:9px; }
+ .unisouk-home-v2 .unisouk-category-item { min-height:105px;gap:9px;padding:12px 7px;border-radius:17px; }
+ .unisouk-home-v2 .unisouk-category-icon { width:40px;height:40px;border-radius:13px; }
+ .unisouk-home-v2 .unisouk-category-icon svg { width:19px;height:19px; }
+ .unisouk-home-v2 .unisouk-category-item>b { font-size:10px; }
+ .unisouk-home-v2 .unisouk-sell-banner { width:calc(100% - 28px);margin-top:18px;padding:15px;gap:11px;border-radius:19px;flex-wrap:wrap; }
+ .unisouk-home-v2 .unisouk-sell-icon { flex-basis:42px;width:42px;height:42px;border-radius:13px; }
+ .unisouk-home-v2 .unisouk-sell-banner>div:nth-child(2) { min-width:calc(100% - 60px); }
+ .unisouk-home-v2 .unisouk-sell-banner h2 { font-size:14px; }
+ .unisouk-home-v2 .unisouk-sell-banner p { font-size:9px;line-height:1.7; }
+ .unisouk-home-v2 .unisouk-sell-banner>a { margin-right:53px;padding:9px 12px;font-size:10px; }
+ .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
+ .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-card { border-radius:17px; }
+ .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-image { height:142px; }
+ .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-card h3 { font-size:11px; }
+ .unisouk-home-v2 .unisouk-latest-v2 .unisouk-product-card b { font-size:13px; }
+}
