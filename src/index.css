@@ -930,3 +930,52 @@ main button.bg-brand-700:hover,main button.bg-teal-700:hover { background:#083b3
 @media(prefers-reduced-motion:reduce) {
  .unisouk-entry-page *, .unisouk-auth-page * { animation:none!important;transition:none!important; }
 }
+
+
+/* Marketplace interior screens: product details, posting, profile, favorites, inbox. */
+.unisouk-detail { padding-top:clamp(22px,4vw,46px); }
+.unisouk-detail-gallery { border-radius:30px!important;box-shadow:0 10px 34px rgba(13,74,62,.055); }
+.unisouk-detail-gallery img { mix-blend-mode:multiply; }
+.unisouk-detail>div:first-child a { border-color:#e5ece8;background:#fff;border-radius:14px; }
+.unisouk-detail h1 { color:#162f28;letter-spacing:-.03em; }
+.unisouk-detail>div.grid>div:last-child>p.text-3xl { color:#0D4A3E; }
+.unisouk-detail>div.grid>div:last-child>.rounded-3xl { border-color:#e7eeea;box-shadow:0 6px 20px rgba(13,74,62,.035); }
+.unisouk-detail>div.grid>div:last-child>div:last-child { border-radius:22px; }
+.unisouk-detail button { border-radius:14px; }
+.unisouk-detail button.bg-\[\#0D4A3E\] { background:#0D4A3E; }
+.unisouk-detail .unisouk-sticky-contact { position:fixed;z-index:35;right:0;left:0;bottom:72px;display:flex;justify-content:center;padding:12px 18px;background:rgba(255,255,255,.94);border-top:1px solid #e8eeeb;backdrop-filter:blur(16px); }
+.unisouk-detail .unisouk-sticky-contact>div { width:min(100%,1200px); }
+main:has(>h1.text-3xl) { padding-top:clamp(26px,4vw,48px); }
+main:has(>h1.text-3xl)>h1 { color:#172f29;letter-spacing:-.035em; }
+main:has(>h1.text-3xl) form { border:1px solid #e7eeea;border-radius:26px;background:white;box-shadow:0 8px 28px rgba(13,74,62,.045); }
+main:has(>h1.text-3xl) form label { color:#33453e; }
+main:has(>h1.text-3xl) form input,main:has(>h1.text-3xl) form select,main:has(>h1.text-3xl) form textarea { min-height:46px;border-radius:13px;background:#fafcfb; }
+main:has(>h1.text-3xl) form button[type=submit] { min-height:50px;border-radius:14px;background:#0D4A3E;font-weight:900; }
+main:has(>h1.text-3xl) form button[type=submit]:hover { background:#083b33; }
+main:has(.unisouk-profile-banner) .rounded-3xl,main:has(.unisouk-profile-banner) .rounded-2xl { border-color:#e7eeea; }
+main:has(.unisouk-profile-banner) section { border-radius:24px;box-shadow:0 7px 24px rgba(13,74,62,.045); }
+main:has(.unisouk-profile-banner) section>div:first-child { border-radius:24px 24px 0 0; }
+main:has(.unisouk-bottom-navigation) .rounded-2xl.border.bg-white,
+main:has(.unisouk-bottom-navigation) .rounded-3xl.border.bg-white { border-color:#e7eeea;box-shadow:0 6px 20px rgba(13,74,62,.04); }
+main:has(.unisouk-bottom-navigation) .grid.grid-cols-2.gap-3>div { border-radius:20px; }
+main:has(.unisouk-bottom-navigation) .grid.grid-cols-2.gap-3>div b { color:#0D4A3E; }
+main:has(.unisouk-bottom-navigation) .space-y-3>div.flex.flex-col { border-radius:20px;border-color:#e7eeea;box-shadow:0 5px 18px rgba(13,74,62,.035); }
+main:has(.unisouk-bottom-navigation) .space-y-3>div.flex.flex-col img { border-radius:14px; }
+main:has(.min-h-\[620px\]) .grid.min-h-\[620px\] { border:1px solid #e6eeea;border-radius:26px;box-shadow:0 10px 32px rgba(13,74,62,.06); }
+main:has(.min-h-\[620px\]) aside { background:#fff; }
+main:has(.min-h-\[620px\]) aside>div:first-child { padding:20px;border-bottom:1px solid #edf1ef; }
+main:has(.min-h-\[620px\]) aside>div:nth-child(2)>div { border-color:#edf1ef; }
+main:has(.min-h-\[620px\]) aside>div:nth-child(2)>div>button:first-child { padding-top:16px;padding-bottom:16px; }
+main:has(.min-h-\[620px\]) section.flex.flex-col { background:#f7f9f8; }
+main:has(.min-h-\[620px\]) section.flex.flex-col>header { border-color:#e8eeeb; }
+main:has(.min-h-\[620px\]) section.flex.flex-col form { border-radius:0;border:0;border-top:1px solid #e8eeeb;box-shadow:none; }
+main:has(.min-h-\[620px\]) section.flex.flex-col form textarea { border-radius:16px; }
+main:has(.min-h-\[620px\]) section.flex.flex-col form button { border-radius:15px;background:#0D4A3E; }
+@media(max-width:640px) {
+ .unisouk-detail { padding-inline:12px;padding-top:14px; }
+ .unisouk-detail-gallery { min-height:280px!important;border-radius:22px!important; }
+ .unisouk-detail .unisouk-sticky-contact { bottom:70px;padding:9px 10px; }
+ main:has(.min-h-\[620px\]) .grid.min-h-\[620px\] { min-height:calc(100svh - 190px);border-radius:20px; }
+ main:has(.min-h-\[620px\]) aside,main:has(.min-h-\[620px\]) aside>div { min-height:0; }
+ main:has(.min-h-\[620px\]) section.flex.flex-col { min-height:calc(100svh - 190px); }
+}
