@@ -91,44 +91,50 @@ function ListingCards({listings}:{listings:Listing[]}) {
 
 function Home({search}:{search:string}) {
  const {listings,loading,error}=useListings(search,'')
- return <main className="unisouk-home bg-[#F7F8FA]">
-  <section className="unisouk-hero relative isolate overflow-hidden bg-[#0D4A3E] text-white">
-   <div className="pointer-events-none absolute -left-24 -top-24 -z-10 h-80 w-80 rounded-full bg-emerald-300/15 blur-3xl"/>
-   <div className="pointer-events-none absolute -bottom-40 right-1/3 -z-10 h-96 w-96 rounded-full bg-teal-200/10 blur-3xl"/>
-   <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-9 sm:px-6 sm:py-14 lg:grid-cols-[1.1fr_.9fr] lg:gap-14 lg:py-20">
-    <div className="text-right">
-     <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold text-emerald-100"><GraduationCap size={16}/> السوق الجامعي · بسكرة</span>
-     <h1 className="mt-5 text-[2rem] font-black leading-[1.35] tracking-tight sm:text-5xl">كل ما يحتاجه يومك الجامعي،<br/><span className="text-emerald-300">في مكان واحد.</span></h1>
-     <p className="mt-4 max-w-xl text-sm leading-8 text-emerald-50/85 sm:text-base">اشترِ وبع وتبادل احتياجاتك مع طلبة جامعة محمد خيضر - بسكرة بسهولة وقرب.</p>
-     <div className="mt-6 flex flex-wrap gap-3">
-      <Link to="/browse" className="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3.5 text-sm font-extrabold text-[#0D4A3E] shadow-lg hover:-translate-y-0.5 hover:bg-emerald-50"><Search size={18}/> اكتشف الإعلانات</Link>
-      <Link to="/new" className="inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-white/10 px-5 py-3.5 text-sm font-extrabold text-white hover:bg-white/15"><Plus size={18}/> أضف إعلانك</Link>
-     </div>
-     <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-[11px] font-bold text-emerald-100"><span className="inline-flex items-center gap-1.5"><ShieldCheck size={15}/> إعلانات تحت المراجعة</span><span className="inline-flex items-center gap-1.5"><GraduationCap size={15}/> مجتمع طلابي</span><span className="inline-flex items-center gap-1.5"><Heart size={15}/> بدون عمولة</span></div>
+ return <main className="unisouk-home-v2 bg-[#F7F8FA]">
+  <section className="unisouk-hero-v2" aria-label="السوق الجامعي">
+   <div className="unisouk-hero-copy">
+    <span className="unisouk-hero-kicker"><GraduationCap size={15}/> سوق الطلبة في بسكرة</span>
+    <h1>احتياجاتك الجامعية،<br/><span>أقرب مما تتخيل.</span></h1>
+    <p>اكتشف منتجات الطلبة، اعثر على ما تحتاجه، أو امنح أغراضك فرصة جديدة داخل جامعة محمد خيضر.</p>
+    <div className="unisouk-hero-actions">
+     <Link to="/browse" className="unisouk-primary-action"><Search size={17}/> اكتشف الإعلانات</Link>
+     <Link to="/new" className="unisouk-secondary-action"><Plus size={17}/> أضف إعلاناً</Link>
     </div>
-    <div className="mx-auto w-full max-w-lg">
-     <div className="rounded-[30px] border border-white/15 bg-white/[.09] p-3 shadow-2xl backdrop-blur-sm sm:p-5">
-      <div className="flex items-center justify-between px-2 pb-4"><div><p className="text-[11px] font-bold text-emerald-200">تسوّق بذكاء</p><p className="mt-1 text-lg font-black">ماذا تبحث عنه اليوم؟</p></div><span className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-300/15 text-emerald-100"><Search size={21}/></span></div>
-      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-       {categories.slice(0,4).map(c=><Link key={c.name} to={'/browse?category='+encodeURIComponent(c.name)} className="group flex min-h-24 flex-col justify-between rounded-2xl bg-white p-3.5 text-right text-slate-800 shadow-sm transition hover:-translate-y-1 hover:bg-emerald-50 sm:min-h-28 sm:p-4"><span className={'grid h-9 w-9 place-items-center rounded-xl '+c.color}><c.icon size={20}/></span><span className="mt-3 text-xs font-extrabold sm:text-sm">{c.name}</span></Link>)}
-      </div>
-      <Link to="/browse" className="mt-3 flex items-center justify-between rounded-2xl bg-[#062f2e]/75 px-4 py-3 text-xs font-extrabold text-emerald-50 hover:bg-[#062f2e]"><span>عرض جميع الأقسام</span><ArrowLeft size={16}/></Link>
-     </div>
+    <div className="unisouk-hero-trust"><span><ShieldCheck size={14}/> مجتمع طلابي</span><span><Heart size={14}/> بدون عمولة</span></div>
+   </div>
+   <div className="unisouk-hero-art" aria-hidden="true">
+    <div className="unisouk-art-ring"/>
+    <div className="unisouk-art-card">
+     <div className="unisouk-art-card-top"><span className="unisouk-art-logo"><GraduationCap size={18}/></span><span>UniSouk</span><span className="unisouk-art-live">للطلبة</span></div>
+     <div className="unisouk-art-illustration"><BookOpen size={58}/><span className="unisouk-art-spark">✦</span></div>
+     <b>سوقك الجامعي</b><small>كل شيء في مكان واحد</small>
+     <div className="unisouk-art-tags"><span>كتب</span><span>أجهزة</span><span>أدوات</span></div>
     </div>
+    <div className="unisouk-art-float unisouk-art-float-one"><Laptop size={17}/><span>إلكترونيات</span></div>
+    <div className="unisouk-art-float unisouk-art-float-two"><BookOpen size={17}/><span>كتب ومراجع</span></div>
    </div>
   </section>
-  <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-14">
-   <div className="mb-5 flex items-end justify-between gap-3"><div><p className="text-[11px] font-extrabold text-[#16816c]">تصفّح بسهولة</p><h2 className="mt-1.5 text-xl font-black text-slate-900 sm:text-2xl">الأقسام الرئيسية</h2><p className="mt-1 text-xs text-slate-500 sm:text-sm">اختر القسم المناسب وابدأ البحث.</p></div><Link to="/browse" className="shrink-0 text-xs font-extrabold text-[#0D4A3E] sm:text-sm">عرض الكل <ArrowLeft className="mr-1 inline" size={14}/></Link></div>
-   <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 md:grid-cols-5">
-    {categories.map(c=><Link key={c.name} to={'/browse?category='+encodeURIComponent(c.name)} className="group flex min-h-28 flex-col items-start justify-between rounded-[22px] border border-slate-100 bg-white p-3.5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg sm:min-h-36 sm:p-5"><span className={'grid h-10 w-10 place-items-center rounded-2xl '+c.color+' sm:h-12 sm:w-12'}><c.icon size={22}/></span><span className="mt-4 text-right text-xs font-extrabold leading-5 text-slate-800 group-hover:text-[#0D4A3E] sm:text-sm">{c.name}</span></Link>)}
+
+  <section className="unisouk-categories-v2">
+   <div className="unisouk-section-heading"><div><span>ابدأ من هنا</span><h2>تسوّق حسب القسم</h2></div><Link to="/browse">كل الأقسام <ArrowLeft size={15}/></Link></div>
+   <div className="unisouk-category-rail" aria-label="الأقسام الرئيسية">
+    {categories.map(c=><Link key={c.name} to={'/browse?category='+encodeURIComponent(c.name)} className="unisouk-category-item"><span className={'unisouk-category-icon '+c.color}><c.icon size={23}/></span><b>{c.name}</b></Link>)}
    </div>
   </section>
-  <section id="listings" className="border-y border-slate-100 bg-white py-9 sm:py-14">
-   <div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="mb-5 flex flex-wrap items-end justify-between gap-3"><div><p className="text-[11px] font-extrabold text-[#16816c]">من مجتمع UniSouk</p><h2 className="mt-1.5 text-xl font-black text-slate-900 sm:text-2xl">{search?'نتائج البحث':'أحدث إعلانات الطلبة'}</h2><p className="mt-1 text-xs text-slate-500 sm:text-sm">إعلانات متاحة للطلبة في المجتمع الجامعي.</p></div><Link to="/browse" className="rounded-xl border border-emerald-100 px-3 py-2 text-xs font-extrabold text-[#0D4A3E] hover:bg-emerald-50">تصفح الكل <ArrowLeft className="mr-1 inline" size={14}/></Link></div>
-    {loading&&<p className="mb-3 rounded-xl bg-emerald-50 p-3 text-sm text-[#0D4A3E]">نحمّل أحدث الإعلانات…</p>}{error&&<p role="alert" className="mb-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">{error}</p>}<ListingCards listings={listings}/>
-   </div>
+
+  <section className="unisouk-sell-banner">
+   <div className="unisouk-sell-icon"><Plus size={24}/></div>
+   <div><span>لديك شيء لم تعد تحتاجه؟</span><h2>حوّله إلى فرصة لطالب آخر.</h2><p>انشر إعلانك وتواصل مباشرة مع المهتمين من مجتمع الجامعة.</p></div>
+   <Link to="/new">أضف إعلانك <ArrowLeft size={16}/></Link>
   </section>
-  <section className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-14"><div className="relative overflow-hidden rounded-[28px] bg-gradient-to-l from-[#0D4A3E] to-[#176c59] px-5 py-7 text-white sm:px-10 sm:py-10"><div className="absolute -left-10 -top-16 h-48 w-48 rounded-full border-[28px] border-white/5"/><div className="relative flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center"><div><span className="text-xs font-bold text-emerald-200">عندك غرض ما تحتاجوش؟</span><h2 className="mt-2 text-xl font-black sm:text-3xl">خليه يفيد طالب آخر.</h2><p className="mt-2 max-w-xl text-xs leading-7 text-emerald-50/85 sm:text-sm">انشر إعلانك بسهولة وتواصل مباشرة مع المهتمين من مجتمع الجامعة.</p></div><Link to="/new" className="inline-flex shrink-0 items-center gap-2 rounded-2xl bg-white px-5 py-3.5 text-sm font-extrabold text-[#0D4A3E] hover:-translate-y-0.5 hover:bg-emerald-50"><Plus size={18}/> انشر إعلاناً مجاناً</Link></div></div></section>
+
+  <section id="listings" className="unisouk-latest-v2">
+   <div className="unisouk-section-heading"><div><span>من مجتمع UniSouk</span><h2>{search?'نتائج البحث':'أحدث إعلانات الطلبة'}</h2><p>اكتشف آخر ما عرضه زملاؤك من منتجات واحتياجات جامعية.</p></div><Link to="/browse">تصفح الكل <ArrowLeft size={15}/></Link></div>
+   {loading&&<p className="mb-3 rounded-xl bg-emerald-50 p-3 text-sm text-[#0D4A3E]">نحمّل أحدث الإعلانات…</p>}
+   {error&&<p role="alert" className="mb-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">{error}</p>}
+   <ListingCards listings={listings}/>
+  </section>
  </main>
 }
 
