@@ -1874,3 +1874,56 @@ footer p{font-size:9px!important}
     border-radius: 16px;
   }
 }
+
+
+/* UniSouk promotional carousel */
+.unisouk-promo-carousel{position:relative;width:min(1240px,calc(100% - 32px));height:clamp(230px,39vw,500px);margin:22px auto 0;overflow:hidden;border-radius:24px;background:#075b46;box-shadow:0 16px 38px rgba(10,63,53,.13);isolation:isolate}
+.unisouk-promo-track,.unisouk-promo-slide{position:absolute;inset:0}
+.unisouk-promo-slide{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(22px,5vw,64px);overflow:hidden;opacity:0;visibility:hidden;transform:translateX(2.5%);transition:opacity .65s ease,transform .65s ease,visibility .65s}
+.unisouk-promo-slide.is-active{opacity:1;visibility:visible;transform:translateX(0);z-index:1}
+.unisouk-promo-photo{padding:0;background:#176f60}
+.unisouk-promo-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.unisouk-promo-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,42,33,.02) 30%,rgba(3,42,33,.48) 100%);pointer-events:none}
+.unisouk-promo-photo-link{position:absolute;z-index:2;right:5%;bottom:9%;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid rgba(255,255,255,.8);border-radius:999px;background:#075b46;color:white;font-size:14px;font-weight:800;text-decoration:none}
+.unisouk-promo-study{background:radial-gradient(circle at 75% 42%,rgba(111,207,169,.55),transparent 30%),linear-gradient(115deg,#073f35,#08785e 60%,#19a17d);color:white}
+.unisouk-promo-sell{background:radial-gradient(circle at 22% 20%,rgba(255,255,255,.18),transparent 26%),linear-gradient(115deg,#0a5546,#0b745b 62%,#164c40);color:white}
+.unisouk-promo-copy{position:relative;z-index:2;max-width:58%;text-align:right}
+.unisouk-promo-kicker{display:inline-block;margin-bottom:12px;color:#c9f3df;font-size:clamp(12px,1.5vw,17px);font-weight:800}
+.unisouk-promo-copy h2{margin:0 0 12px;font-size:clamp(24px,4vw,48px);font-weight:900;line-height:1.25;letter-spacing:-.03em}
+.unisouk-promo-copy p{max-width:520px;margin:0 0 22px;color:rgba(255,255,255,.83);font-size:clamp(13px,1.55vw,18px);line-height:1.9}
+.unisouk-promo-copy>a{display:inline-flex;align-items:center;gap:10px;border-radius:14px;background:#fff;padding:12px 19px;color:#075b46;font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.13);transition:transform .2s ease}
+.unisouk-promo-copy>a:hover{transform:translateY(-2px)}
+.unisouk-promo-objects{position:relative;display:flex;flex:1;align-items:center;justify-content:center;min-width:34%;height:100%}
+.unisouk-promo-object{position:absolute;display:grid;place-items:center;border:1px solid rgba(255,255,255,.5);border-radius:26px;background:rgba(255,255,255,.13);color:white;box-shadow:0 20px 50px rgba(0,0,0,.14);backdrop-filter:blur(8px)}
+.promo-book{width:clamp(86px,11vw,140px);height:clamp(100px,14vw,170px);right:4%;top:15%;transform:rotate(-9deg)}
+.promo-laptop{width:clamp(110px,15vw,190px);height:clamp(90px,12vw,145px);left:2%;top:25%;transform:rotate(5deg)}
+.promo-bag{width:clamp(78px,10vw,125px);height:clamp(80px,10vw,130px);right:32%;bottom:5%;transform:rotate(8deg)}
+.promo-shirt{width:clamp(100px,13vw,160px);height:clamp(110px,15vw,180px);right:12%;top:12%;transform:rotate(-8deg)}
+.promo-shield{width:clamp(75px,9vw,112px);height:clamp(75px,9vw,112px);left:2%;top:12%;transform:rotate(8deg)}
+.promo-basket{width:clamp(95px,12vw,145px);height:clamp(95px,12vw,145px);left:22%;bottom:3%;transform:rotate(-7deg)}
+.unisouk-promo-watermark{position:absolute;left:4%;bottom:4%;color:rgba(255,255,255,.08);font-size:clamp(24px,5vw,62px);font-weight:1000;letter-spacing:-.05em;white-space:nowrap}
+.unisouk-promo-arrow{position:absolute;z-index:5;top:50%;display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.6);border-radius:50%;background:rgba(5,57,45,.48);color:white;backdrop-filter:blur(6px);transform:translateY(-50%);transition:background .2s}
+.unisouk-promo-arrow:hover{background:#063f34}
+.promo-next{right:14px}
+.promo-prev{left:14px}
+.promo-prev svg{transform:rotate(180deg)}
+.unisouk-promo-dots{position:absolute;z-index:6;right:50%;bottom:13px;display:flex;gap:8px;transform:translateX(50%)}
+.unisouk-promo-dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.55);transition:width .25s,background .25s}
+.unisouk-promo-dots button.is-active{width:23px;border-radius:99px;background:#fff}
+@media(max-width:760px){
+ .unisouk-promo-carousel{width:calc(100% - 20px);height:clamp(220px,62vw,330px);margin-top:12px;border-radius:17px}
+ .unisouk-promo-slide{gap:6px;padding:22px 18px 30px}
+ .unisouk-promo-copy{max-width:66%}
+ .unisouk-promo-copy h2{font-size:clamp(20px,5.5vw,30px);line-height:1.35}
+ .unisouk-promo-copy p{font-size:12px;line-height:1.7;margin-bottom:14px}
+ .unisouk-promo-kicker{font-size:11px;margin-bottom:7px}
+ .unisouk-promo-copy>a{padding:9px 12px;font-size:11px;border-radius:11px}
+ .unisouk-promo-objects{min-width:30%;transform:scale(.82);transform-origin:center}
+ .unisouk-promo-arrow{width:32px;height:32px}
+ .promo-next{right:7px}.promo-prev{left:7px}
+ .unisouk-promo-photo-link{right:14px;bottom:35px;padding:9px 13px;font-size:11px}
+ .unisouk-promo-photo:after{background:linear-gradient(0deg,rgba(3,42,33,.55),transparent 70%)}
+}
+@media(prefers-reduced-motion:reduce){
+ .unisouk-promo-slide,.unisouk-promo-dots button,.unisouk-promo-copy>a{transition:none}
+}
