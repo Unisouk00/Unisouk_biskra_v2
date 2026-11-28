@@ -89,12 +89,43 @@ function ListingCards({listings}:{listings:Listing[]}) {
  </article>)}</div>
 }
 
+function PromoCarousel() {
+ const [active,setActive]=useState(0)
+ const [paused,setPaused]=useState(false)
+ const total=3
+ useEffect(()=>{
+  if(paused)return
+  const timer=window.setInterval(()=>setActive(current=>(current+1)%total),5500)
+  return ()=>window.clearInterval(timer)
+ },[paused])
+ const goTo=(index:number)=>setActive((index+total)%total)
+ return <section className="unisouk-promo-carousel" aria-label="عروض وإعلانات UniSouk" dir="rtl" onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>setPaused(false)} onFocusCapture={()=>setPaused(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node|null))setPaused(false)}}>
+  <div className="unisouk-promo-track" aria-live="polite">
+   <article className={'unisouk-promo-slide unisouk-promo-photo '+(active===0?'is-active':'')} aria-hidden={active!==0}>
+    <img src="https://raw.githubusercontent.com/Unisouk00/Unisouk_biskra_v2/main/unisouk-hero.png" alt="UniSouk — السوق الجامعي لطلبة جامعة محمد خيضر بسكرة" fetchPriority="high"/>
+    <Link to="/browse" className="unisouk-promo-photo-link" tabIndex={active===0?0:-1}>اكتشف الإعلانات <ArrowLeft size={16}/></Link>
+   </article>
+   <article className={'unisouk-promo-slide unisouk-promo-study '+(active===1?'is-active':'')} aria-hidden={active!==1}>
+    <div className="unisouk-promo-copy"><span className="unisouk-promo-kicker">كل ما تحتاجه في مكان واحد</span><h2>جهّز نفسك للفصل الجامعي</h2><p>كتب، مراجع، أدوات دراسية وإلكترونيات يعرضها طلبة جامعتك.</p><Link to="/browse" tabIndex={active===1?0:-1}>تصفح المنتجات <ArrowLeft size={17}/></Link></div>
+    <div className="unisouk-promo-objects" aria-hidden="true"><span className="unisouk-promo-object promo-book"><BookOpen size={66}/></span><span className="unisouk-promo-object promo-laptop"><Laptop size={76}/></span><span className="unisouk-promo-object promo-bag"><ShoppingBag size={62}/></span></div>
+    <span className="unisouk-promo-watermark" aria-hidden="true">UniSouk</span>
+   </article>
+   <article className={'unisouk-promo-slide unisouk-promo-sell '+(active===2?'is-active':'')} aria-hidden={active!==2}>
+    <div className="unisouk-promo-copy"><span className="unisouk-promo-kicker">امنح أغراضك فرصة جديدة</span><h2>بع ما لم تعد تحتاجه</h2><p>اعرض كتبك وأدواتك ليستفيد منها طالب آخر، وتواصل معه مباشرة.</p><Link to="/new" tabIndex={active===2?0:-1}>أضف إعلانك الآن <ArrowLeft size={17}/></Link></div>
+    <div className="unisouk-promo-objects" aria-hidden="true"><span className="unisouk-promo-object promo-shirt"><Shirt size={76}/></span><span className="unisouk-promo-object promo-shield"><ShieldCheck size={58}/></span><span className="unisouk-promo-object promo-basket"><ShoppingBag size={72}/></span></div>
+    <span className="unisouk-promo-watermark" aria-hidden="true">بيع • اشترِ • تواصل</span>
+   </article>
+  </div>
+  <button type="button" className="unisouk-promo-arrow promo-next" onClick={()=>goTo(active+1)} aria-label="العرض التالي"><ArrowLeft size={20}/></button>
+  <button type="button" className="unisouk-promo-arrow promo-prev" onClick={()=>goTo(active-1)} aria-label="العرض السابق"><ArrowLeft size={20}/></button>
+  <div className="unisouk-promo-dots" role="group" aria-label="اختيار العرض">{Array.from({length:total},(_,i)=><button key={i} type="button" onClick={()=>goTo(i)} aria-label={'العرض '+(i+1)} aria-current={active===i?'true':undefined} className={active===i?'is-active':''}/>)}</div>
+ </section>
+}
+
 function Home({search}:{search:string}) {
  const {listings,loading,error}=useListings(search,'')
  return <main className="unisouk-home-v2 bg-[#F7F8FA]">
-  <section className="unisouk-hero-image" aria-label="UniSouk السوق الجامعي">
-   <img src="https://raw.githubusercontent.com/Unisouk00/Unisouk_biskra_v2/main/unisouk-hero.png" alt="UniSouk — السوق الجامعي لطلبة جامعة محمد خيضر بسكرة" fetchPriority="high" />
-  </section>
+  <PromoCarousel/>
 
   <section className="unisouk-categories-v2">
    <div className="unisouk-section-heading"><div><span>ابدأ من هنا</span><h2>تسوّق حسب القسم</h2></div><Link to="/browse">كل الأقسام <ArrowLeft size={15}/></Link></div>
