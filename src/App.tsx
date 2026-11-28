@@ -92,28 +92,8 @@ function ListingCards({listings}:{listings:Listing[]}) {
 function Home({search}:{search:string}) {
  const {listings,loading,error}=useListings(search,'')
  return <main className="unisouk-home-v2 bg-[#F7F8FA]">
-  <section className="unisouk-hero-v2" aria-label="السوق الجامعي">
-   <div className="unisouk-hero-copy">
-    <span className="unisouk-hero-kicker"><GraduationCap size={15}/> سوق الطلبة في بسكرة</span>
-    <h1>احتياجاتك الجامعية،<br/><span>أقرب مما تتخيل.</span></h1>
-    <p>اكتشف منتجات الطلبة، اعثر على ما تحتاجه، أو امنح أغراضك فرصة جديدة داخل جامعة محمد خيضر.</p>
-    <div className="unisouk-hero-actions">
-     <Link to="/browse" className="unisouk-primary-action"><Search size={17}/> اكتشف الإعلانات</Link>
-     <Link to="/new" className="unisouk-secondary-action"><Plus size={17}/> أضف إعلاناً</Link>
-    </div>
-    <div className="unisouk-hero-trust"><span><ShieldCheck size={14}/> مجتمع طلابي</span><span><Heart size={14}/> بدون عمولة</span></div>
-   </div>
-   <div className="unisouk-hero-art" aria-hidden="true">
-    <div className="unisouk-art-ring"/>
-    <div className="unisouk-art-card">
-     <div className="unisouk-art-card-top"><span className="unisouk-art-logo"><GraduationCap size={18}/></span><span>UniSouk</span><span className="unisouk-art-live">للطلبة</span></div>
-     <div className="unisouk-art-illustration"><BookOpen size={58}/><span className="unisouk-art-spark">✦</span></div>
-     <b>سوقك الجامعي</b><small>كل شيء في مكان واحد</small>
-     <div className="unisouk-art-tags"><span>كتب</span><span>أجهزة</span><span>أدوات</span></div>
-    </div>
-    <div className="unisouk-art-float unisouk-art-float-one"><Laptop size={17}/><span>إلكترونيات</span></div>
-    <div className="unisouk-art-float unisouk-art-float-two"><BookOpen size={17}/><span>كتب ومراجع</span></div>
-   </div>
+  <section className="unisouk-hero-image" aria-label="UniSouk السوق الجامعي">
+   <img src="https://raw.githubusercontent.com/Unisouk00/Unisouk_biskra_v2/main/unisouk-hero.png" alt="UniSouk — السوق الجامعي لطلبة جامعة محمد خيضر بسكرة" fetchPriority="high" />
   </section>
 
   <section className="unisouk-categories-v2">
